@@ -26,7 +26,7 @@ router.get('/deleteItem/:id', (req, res) => {
     let { params } = req;
     error = db.deleteItem(params.id);
     if (!error) {
-        res.send('Successfully deleted item from the database!');
+        res.send('Deleted item from the database!');
     } else {
         res.send('Error when attempting to remove a record from the database.');
     }

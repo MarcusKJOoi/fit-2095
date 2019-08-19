@@ -1,5 +1,5 @@
 // DB implemented as array of objects
-// An object looks like the following:
+// An object contains the following fields:
 /* {
     id, 
     name, 
@@ -9,7 +9,7 @@
 let db = [];
 
 // Creates(inserts) a record into the db
-// Returns the error status - false if all ok, true if there is an error
+// Returns error status - false if all ok, true if there is an error
 function create(params) {
     let { name, quantity, price } = params;
     // Potentially could have undefined values
@@ -34,7 +34,7 @@ function read(id='') {
 }
 
 // Deletes a record from the db
-// Returns the error status - false if all ok, true if there is an error
+// Returns error status - false if all ok, true if there is an error
 function deleteItem(id='') {
     if (id === '') return true;
     db = db.filter(record => record.id !== id);

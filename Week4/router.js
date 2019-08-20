@@ -17,8 +17,10 @@ router.get('/newItem/:name/:quantity/:price', (req, res) => {
 });
 
 router.get('/listAllItems', (_, res) => {
-    let result = 'DB Records <br>';
-    db.read().forEach(record => result = result + JSON.stringify(record) + '<br>');
+    let result = 'ID | Name | Price | Quantity <br>';
+    // db.read().forEach(record => result = result + JSON.stringify(record) + '<br>');
+    db.read().forEach(record => result = result + 
+        `${record.id} |  ${record.name} | ${record.price} | ${record.quantity} ` + '<br>');
     res.send(result);
 });
 

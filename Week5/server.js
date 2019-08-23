@@ -27,7 +27,7 @@ app.post('/newTask', urlencodedParser, (req, res) => {
         taskdue,
         taskdesc
     });
-    res.send('Task created! <a href="/">Home</a>');
+    res.redirect('/');
 });
 
 app.get('/listTasks', urlencodedParser, (_, res) => {

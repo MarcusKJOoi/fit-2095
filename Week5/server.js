@@ -9,6 +9,9 @@ app.use(express.static('css'));
 app.use(express.static('images'));
 app.use(express.static('views'));
 
+// List of tasks created so far
+let tasks = [];
+
 app.get('/', urlencodedParser, (_, res) => {
     res.render('index.html');
 });
@@ -19,14 +22,16 @@ app.get('/newTask', (_, res) => {
 
 app.post('/newTask', urlencodedParser, (req, res) => {
     let { taskname, taskdue, taskdesc } = req.body;
-    console.log("req", req.body);
-    console.log('name', taskname);
-    console.log('due', taskdue);
-    console.log('desc', taskdesc);
+    tasks.push({
+        taskname,
+        taskdue,
+        taskdesc
+    });
+    res.send('Task created! <a href="/">Home</a>');
 });
 
 app.get('/listTasks', urlencodedParser, (_, res) => {
-    res.render('listTasks.html');
+    res.render('listTasks.html', { tasks });
 });
 
 app.listen(8080);

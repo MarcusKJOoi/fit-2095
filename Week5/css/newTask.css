@@ -1,0 +1,13 @@
+.form-container {
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.input-field {
+    margin-bottom: 10px;
+}
+
+.task-desc {
+    width: 30%;
+    margin-bottom: 10px;
+}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="newTask.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,11 +10,13 @@
 <body>
     <a href="http://127.0.0.1:8080/">Home</a>
     <a href="http://127.0.0.1:8080/listTasks">List all tasks</a>
-    <form action="/newTask" method="POST">
-        Task name: <input type="text" name="taskname">
-        Task due: <input type="date" name="taskdue">
-        Task desc: <input type="text" name="taskdesc">
-        <input type="submit" value="Submit">
-    </form>
+    <div class="form-container">
+        <form action="/newTask" method="POST">
+            Task name: <input class="input-field" type="text" name="taskname"><br>
+            Task due: <input class="input-field" type="date" name="taskdue"><br>
+            Task desc: <input class="task-desc" type="text" name="taskdesc"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>

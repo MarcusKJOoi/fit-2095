@@ -1,7 +1,3 @@
 body {
     background: linear-gradient( #1fc8db, #2cb5e8) fixed;
 }
-
-table, th, td {
-    border: 1px solid black;
-}

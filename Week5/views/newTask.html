@@ -12,9 +12,18 @@
     <a href="http://127.0.0.1:8080/listTasks">List all tasks</a>
     <div class="form-container">
         <form action="/newTask" method="POST">
-            Task name: <input class="input-field" type="text" name="taskname"><br>
-            Task due: <input class="input-field" type="date" name="taskdue"><br>
-            Task desc: <input class="task-desc" type="text" name="taskdesc"><br>
+            <p>
+                <label for="task-name">Task name: </label>
+                <input id="task-name" type="text" name="taskname"><br>
+            </p>
+            <p>
+                <label for="input-field">Task due: </label>
+                <input id="input-field" type="date" name="taskdue"><br>
+            </p>
+            <p>
+                <label for="input-field">Task desc: </label>
+                <input id="task-desc" type="text" name="taskdesc"><br>
+            </p>
             <input type="submit" value="Submit">
         </form>
     </div>

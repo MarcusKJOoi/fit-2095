@@ -1,13 +1,29 @@
+body {
+    background: linear-gradient( #1fc8db, #2cb5e8) fixed;
+}
+
+form {
+    display: table;
+}
+
+p { 
+    display: table-row;  
+}
+
+label {
+    display: table-cell; 
+}
+
+input { 
+    display: table-cell;
+    margin-bottom: 20px; 
+}
+
 .form-container {
     flex-direction: column;
     margin-top: 30px;
 }
 
 .input-field {
-    margin-bottom: 10px;
-}
-
-.task-desc {
-    width: 30%;
     margin-bottom: 10px;
 }

@@ -7,7 +7,6 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false});
 
 app.use(express.static('css'));
 app.use(express.static('images'));
-app.use(express.static('views'));
 
 // List of tasks created so far
 let tasks = [];

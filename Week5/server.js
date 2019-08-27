@@ -26,7 +26,7 @@ app.post('/newTask', urlencodedParser, (req, res) => {
         taskdue,
         taskdesc
     });
-    res.redirect('/');
+    res.redirect('/listTasks');
 });
 
 app.get('/listTasks', urlencodedParser, (_, res) => {

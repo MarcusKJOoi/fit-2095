@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="listTasks.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List All Tasks</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <a href="/newTask">Add new task</a>
+    <h1>Tasks Created</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Due Date</th>
+            <th>Desc</th>
+        </tr>
+        <% for ( let i =0; i < tasks.length; i++) { %>
+            <tr>
+                <td>
+                    <%= tasks[i].taskname %>
+                </td>
+                <td>
+                    <%= tasks[i].taskdue %>
+                </td>
+                <td>
+                    <%= tasks[i].taskdesc %>
+                </td>
+            </tr>
+            <% }%>
+    </table>
+</body>
+</html>

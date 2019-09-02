@@ -40,7 +40,7 @@ app.post('/newTask', urlencodedParser, (req, res) => {
             taskname, 
             taskassignedto, 
             taskdue, 
-            taskcomplete === 'true',
+            taskcomplete: taskcomplete === 'true',
             taskdesc 
         }, (err, _) => {
             if(err) {

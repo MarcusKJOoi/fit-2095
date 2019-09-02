@@ -34,12 +34,13 @@ app.post('/newTask', urlencodedParser, (req, res) => {
             taskid = result[0].taskid + 1;
         };
         let { taskname, taskassignedto, taskdue, taskcomplete, taskdesc } = req.body;
+	taskdue = Date(taskdue);
         db.collection('todo').insertOne({ 
             taskid, 
             taskname, 
             taskassignedto, 
             taskdue, 
-            taskcomplete: taskcomplete === 'true', // Convert to bool
+            taskcomplete,
             taskdesc 
         }, (err, _) => {
             if(err) {

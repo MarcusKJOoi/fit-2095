@@ -10,6 +10,8 @@
 <body>
     <a href="/">Home</a>
     <a href="/listTasks">List all tasks</a>
+    <a href="/updateTask">Update task</a>
+    <a href="/deleteTasks">Delete tasks</a>
     <div class="form-container">
         <form action="/newTask" method="POST">
             <p>
@@ -17,8 +19,17 @@
                 <input id="task-name" type="text" name="taskname"><br>
             </p>
             <p>
+                <label for="input-field">Assigned to: </label>
+                <input id="input-field" type="text" name="taskassignedto"><br>
+            </p>
+            <p>
                 <label for="input-field">Task due: </label>
                 <input id="input-field" type="date" name="taskdue"><br>
+            </p>
+            <p>
+                <label for="radio-button">Task status: </label><br>
+                <input id="radio-button" type="radio" name="taskcomplete" value=false>In Progress<br>
+                <input id="radio-button" type="radio" name="taskcomplete" value=true>Complete<br>
             </p>
             <p>
                 <label for="input-field">Task desc: </label>

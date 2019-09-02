@@ -14,7 +14,6 @@ let db;
 const url = 'mongodb://localhost:27017';
 const dbName = 'FIT2095';
 MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (_, client) => {
-    console.log('Connected to MongoDB server.');
     db = client.db(dbName);
 });
 

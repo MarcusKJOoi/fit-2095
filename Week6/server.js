@@ -108,4 +108,12 @@ app.post('/updateTask', urlencodedParser, (req, res) => {
     });
 });
 
+app.get('/findtasks/:no1/:no2', urlencodedParser, (req, res) => {
+    let { no1, no2 } = req.params; 
+    let query = { taskid: { $gte: parseInt(no1), $lte: parseInt(no2) }};
+    db.collection('todo').find(query).toArray((_, data) => {
+        res.render('listTasks.html', { tasks: data });
+    });
+});
+
 app.listen(8080);

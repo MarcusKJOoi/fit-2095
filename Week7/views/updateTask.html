@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <link rel="stylesheet" href="updateTask.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <a href="/newTask">Add new task</a>
+    <a href="/listTasks">List all tasks</a>
+    <a href="/deleteTasks">Delete tasks</a>
+    <form action="/updateTask" method="POST">
+        <p>
+            <label>Task ID</label>
+            <input type="text" name="taskid">
+        </p>
+        <p>
+            <label for="radio-button">Task status: </label><br>
+            <input id="radio-button" type="radio" name="taskcomplete" value=false>In Progress<br>
+            <input id="radio-button" type="radio" name="taskcomplete" value=true>Complete<br>
+        </p>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

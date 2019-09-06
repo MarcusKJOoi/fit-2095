@@ -1,0 +1,22 @@
+body {
+    background: linear-gradient( #1fc8db, #2cb5e8) fixed;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 25px;
+}
+
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: red;
+}

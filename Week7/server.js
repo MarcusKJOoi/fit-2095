@@ -1,9 +1,9 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let app = express();
-const MongoClient = require('mongodb').MongoClient;
-const Tasks = require('./models/tasks');
-const Developers = require('./models/developers');
+const mongoose = require('mongoose');
+const Task = require('./models/task');
+const Developer = require('./models/developer');
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -12,46 +12,70 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false});
 app.use(express.static('css'));
 app.use(express.static('images'));
 
-let db;
-const url = 'mongodb://localhost:27017';
-const dbName = 'FIT2095';
-MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (_, client) => {
-    db = client.db(dbName);
+const url = 'mongodb://localhost:27017/FIT2095';
+mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true });
+
+app.get('/', (_, res) => {
+    res.render('index.html');
 });
 
-app.get('/', urlencodedParser, (_, res) => {
-    res.render('index.html');
+app.get('/newDev', urlencodedParser, (_, res) => {
+    res.render('newDev.html');
+});
+
+app.post('/newDev', urlencodedParser, (req, res) => {
+    let { firstName, lastName, level, state, suburb, street, unit } = req.body;
+    let newDev = Developer({
+        name: {
+            firstName,
+            lastName
+        },
+        level,
+        state,
+        suburb,
+        street,
+        unit
+    });
+    newDev.save((err) => {
+        if(err) {
+            res.send('Failed to save new developer information!');
+        } else {
+            res.redirect('/listDev');
+        }
+    });
 });
 
 app.get('/newTask', (_, res) => {
     res.render('newTask.html');
 });
 
+
 app.post('/newTask', urlencodedParser, (req, res) => {
-    db.collection('todo').find().sort({ $natural: -1 }).limit(1).toArray((_, result) => {
-        let taskid;
-        if(result.length === 0) {
-            taskid = 0;
-        } else {
-            taskid = result[0].taskid + 1;
-        };
-        let { taskname, taskassignedto, taskdue, taskcomplete, taskdesc } = req.body;
-	taskdue = Date(taskdue);
-        db.collection('todo').insertOne({ 
-            taskid, 
-            taskname, 
-            taskassignedto, 
-            taskdue, 
-            taskcomplete: taskcomplete === 'true',
-            taskdesc 
-        }, (err, _) => {
-            if(err) {
-                res.send('Error when inserting new task!');
-            } else {
-                res.redirect('/listTasks');
-            }
-        });
-    });
+    Task.find()
+    // db.collection('todo').find().sort({ $natural: -1 }).limit(1).toArray((_, result) => {
+    //     let taskid;
+    //     if(result.length === 0) {
+    //         taskid = 0;
+    //     } else {
+    //         taskid = result[0].taskid + 1;
+    //     };
+    //     let { taskname, taskassignedto, taskdue, taskcomplete, taskdesc } = req.body;
+	// taskdue = Date(taskdue);
+    //     db.collection('todo').insertOne({ 
+    //         taskid, 
+    //         taskname, 
+    //         taskassignedto, 
+    //         taskdue, 
+    //         taskcomplete: taskcomplete === 'true',
+    //         taskdesc 
+    //     }, (err, _) => {
+    //         if(err) {
+    //             res.send('Error when inserting new task!');
+    //         } else {
+    //             res.redirect('/listTasks');
+    //         }
+    //     });
+    // });
 });
 
 app.get('/listTasks', urlencodedParser, (_, res) => {

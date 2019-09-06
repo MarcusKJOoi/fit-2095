@@ -22,4 +22,4 @@ let taskSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.Model('Tasks', taskSchema);
+module.exports = mongoose.Model('Task', taskSchema);

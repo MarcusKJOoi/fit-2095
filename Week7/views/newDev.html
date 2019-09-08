@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="newDev.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Developer</title>
+</head>
+<body>
+    <form action='/newDev' method="POST"> 
+        <p>
+            <label for="firstName">First Name: </label>
+            <input id="firstName" type="text" name="firstName" required>
+        </p>
+        <p>
+            <label for="lastName">Last Name: </label>
+            <input id="lastName" type="text" name="lastName">
+        </p>
+        <p>
+            <label for="level">Developer Level: </label>
+            <select id="level" name="level">
+                <option value="beginner">BEGINNER</option>
+                <option value="expert">EXPERT</option>
+            </select> 
+        </p>
+        <p>
+            <label for="state">State: </label>
+            <input id="state" type="text" name="state">       
+        </p>
+        <p>
+            <label for="suburb">Suburb: </label>
+            <input id="suburb" type="text" name="suburb">
+        </p>
+        <p>
+            <label for="street">Street: </label>
+            <input id="street" type="text" name="street">
+        </p>
+        <p>
+            <label for="unit">Unit: </label>
+            <input id="unit" type="text" name="unit">
+        </p>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

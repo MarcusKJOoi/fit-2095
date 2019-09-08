@@ -24,34 +24,48 @@ app.get('/newDev', urlencodedParser, (_, res) => {
 });
 
 app.post('/newDev', urlencodedParser, (req, res) => {
+    console.log(req.body);
     let { firstName, lastName, level, state, suburb, street, unit } = req.body;
     let newDev = Developer({
+        _id: new mongoose.Types.ObjectId(),
         name: {
             firstName,
             lastName
         },
-        level,
-        state,
-        suburb,
-        street,
-        unit
+        level: level,
+        address: {
+            state,
+            suburb,
+            street,
+            unit
+        }
     });
     newDev.save((err) => {
         if(err) {
+            console.log({err});
             res.send('Failed to save new developer information!');
         } else {
-            res.redirect('/listDev');
+            res.redirect('/listDevs');
         }
     });
+});
+
+app.get('/listDevs', (_, res) => {
+    Developer.find({}, (err, docs) => {
+        if(err) {
+            console.log({err});
+        } else {
+            res.render('listDevs.html', { devs: docs });
+        }
+    })
 });
 
 app.get('/newTask', (_, res) => {
     res.render('newTask.html');
 });
 
-
 app.post('/newTask', urlencodedParser, (req, res) => {
-    Task.find()
+    Task.findOne()
     // db.collection('todo').find().sort({ $natural: -1 }).limit(1).toArray((_, result) => {
     //     let taskid;
     //     if(result.length === 0) {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="listDevs.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List All Developers</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Level</th>
+            <th>Address</th>
+        </tr>
+        <% for ( let i =0; i < devs.length; i++) { %>
+            <tr>
+                <td>
+                    <%= devs[i].name.firstName + ' ' + devs[i].name.lastName %>
+                </td>
+                <td>
+                    <%= devs[i].level %>
+                </td>
+                <td>
+                    <%= devs[i].address.unit + ' ' + devs[i].address.street + ' ' + devs[i].address.suburb + ' ' + devs[i].address.state %>
+                </td>
+            </tr>
+            <% }%>
+    </table>
+</body>
+</html>

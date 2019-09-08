@@ -26,4 +26,4 @@ let developerSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.Model('Developer', developerSchema);
+module.exports = mongoose.model('Developer', developerSchema);

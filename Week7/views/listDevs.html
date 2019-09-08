@@ -8,13 +8,18 @@
     <title>List All Developers</title>
 </head>
 <body>
+    <a href="/">Home</a>
+    <a href="/newTask">Add new task</a>
+    <a href="/updateTask">Update task</a>
+    <a href="/deleteTasks">Delete tasks</a>
+    <h1>Developers</h1>
     <table>
         <tr>
             <th>Name</th>
             <th>Level</th>
             <th>Address</th>
         </tr>
-        <% for ( let i =0; i < devs.length; i++) { %>
+        <% for ( let i = 0; i < devs.length; i++) { %>
             <tr>
                 <td>
                     <%= devs[i].name.firstName + ' ' + devs[i].name.lastName %>

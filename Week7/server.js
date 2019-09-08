@@ -61,7 +61,13 @@ app.get('/listDevs', (_, res) => {
 });
 
 app.get('/newTask', (_, res) => {
-    res.render('newTask.html');
+    Developer.find({}, (err, docs) => {
+        if(err) {
+            console.log({err});
+        } else {
+            res.render('newTask.html', { devs: docs });
+        }
+    });
 });
 
 app.post('/newTask', urlencodedParser, (req, res) => {

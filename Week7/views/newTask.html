@@ -15,25 +15,30 @@
     <div class="form-container">
         <form action="/newTask" method="POST">
             <p>
-                <label for="task-name">Task name: </label>
-                <input id="task-name" type="text" name="taskname"><br>
+                <label for="name">Task name: </label>
+                <input id="name" type="text" name="name" required>
             </p>
             <p>
-                <label for="input-field">Assigned to: </label>
-                <input id="input-field" type="text" name="taskassignedto"><br>
+                <label for="developer">Assigned to: </label>
+                <select id="developer" name="developerId">
+                    <% for ( let i = 0; i < devs.length; i++) { %>
+                        <option value="<%= devs[i]._id %>"><%= devs[i].firstName + ' ' + devs[i].lastName %></option>
+                    <% }%>
+                </select>
+            <p>
+                <label for="dueDate">Task due: </label>
+                <input id="dueDate" type="date" name="dueDate">
             </p>
             <p>
-                <label for="input-field">Task due: </label>
-                <input id="input-field" type="date" name="taskdue"><br>
+                <label for="status">Task status: </label>
+                <select id="status" name="status">
+                    <option value="In Progress">In Progress
+                    <option value="Complete">Complete
+                </select>
             </p>
             <p>
-                <label for="radio-button">Task status: </label><br>
-                <input id="radio-button" type="radio" name="taskcomplete" value=false>In Progress<br>
-                <input id="radio-button" type="radio" name="taskcomplete" value=true>Complete<br>
-            </p>
-            <p>
-                <label for="input-field">Task desc: </label>
-                <input id="task-desc" type="text" name="taskdesc"><br>
+                <label for="description">Task desc: </label>
+                <input id="description" type="text" name="description">
             </p>
             <input type="submit" value="Submit">
         </form>

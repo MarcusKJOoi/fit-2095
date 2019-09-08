@@ -24,7 +24,6 @@ app.get('/newDev', urlencodedParser, (_, res) => {
 });
 
 app.post('/newDev', urlencodedParser, (req, res) => {
-    console.log(req.body);
     let { firstName, lastName, level, state, suburb, street, unit } = req.body;
     let newDev = Developer({
         _id: new mongoose.Types.ObjectId(),
@@ -57,7 +56,7 @@ app.get('/listDevs', (_, res) => {
         } else {
             res.render('listDevs.html', { devs: docs });
         }
-    })
+    });
 });
 
 app.get('/newTask', (_, res) => {
@@ -71,37 +70,32 @@ app.get('/newTask', (_, res) => {
 });
 
 app.post('/newTask', urlencodedParser, (req, res) => {
-    Task.findOne()
-    // db.collection('todo').find().sort({ $natural: -1 }).limit(1).toArray((_, result) => {
-    //     let taskid;
-    //     if(result.length === 0) {
-    //         taskid = 0;
-    //     } else {
-    //         taskid = result[0].taskid + 1;
-    //     };
-    //     let { taskname, taskassignedto, taskdue, taskcomplete, taskdesc } = req.body;
-	// taskdue = Date(taskdue);
-    //     db.collection('todo').insertOne({ 
-    //         taskid, 
-    //         taskname, 
-    //         taskassignedto, 
-    //         taskdue, 
-    //         taskcomplete: taskcomplete === 'true',
-    //         taskdesc 
-    //     }, (err, _) => {
-    //         if(err) {
-    //             res.send('Error when inserting new task!');
-    //         } else {
-    //             res.redirect('/listTasks');
-    //         }
-    //     });
-    // });
+    let { name, developerId, dueDate, status, description } = req.body;
+    let newTask = new Task({
+        _id: new mongoose.Types.ObjectId(),
+        name,
+        developerId,
+        dueDate,
+        status,
+        description  
+    });
+    newTask.save((err) => {
+        if(err) {
+            console.log({err});
+        } else {
+            res.redirect('/listTasks');
+        }
+    })
 });
 
 app.get('/listTasks', urlencodedParser, (_, res) => {
-    db.collection('todo').find().toArray((_, data) => {
-        res.render('listTasks.html', { tasks: data });
-    })
+    Task.find({}, (err, docs) => {
+        if(err) {
+            console.log({err});
+        } else {
+            res.render('listTasks.html', { tasks: docs });
+        }
+    });
 });
 
 app.get('/deleteTasks', urlencodedParser, (_, res) => {
@@ -112,11 +106,11 @@ app.post('/deleteTasks', urlencodedParser, (req, res) => {
     let { deletetype } = req.body;
     switch(deletetype) {
         case 'byid':
-            let { taskid: deletedTaskID } = req.body;
+            let { _id: deletedTaskID } = req.body;
             // delete a certain taskid
-            db.collection('todo').deleteOne({ taskid: { $eq: parseInt(deletedTaskID) }}, (err, _) => {
+            Task.deleteOne({ 'taskid': deletedTaskID }, (err) => {
                 if(err) {
-                    res.send("Error when deleting task!");
+                    console.log({err});
                 } else {
                     res.redirect('/listTasks');
                 }
@@ -124,16 +118,16 @@ app.post('/deleteTasks', urlencodedParser, (req, res) => {
             break;
             case 'completed':
                 // delete all complete tasks
-                db.collection('todo').deleteMany({ taskcomplete: { $eq: true }}, (err, _) => {
+                Task.deleteMany({ 'status': 'Complete' }, (err) => {
                     if(err) {
-                        res.send("Error when deleting task!");
+                        console.log({err});
                     } else {
                         res.redirect('/listTasks');
                     }
                 });
             break;
         default:
-            res.send('Invalid deletion criteria!');
+            res.send('Invalid deletion criteria!'); // Should never happen
             break;
     };
 });
@@ -143,22 +137,13 @@ app.get('/updateTask', urlencodedParser, (_, res) =>{
 });
 
 app.post('/updateTask', urlencodedParser, (req, res) => {
-    let { taskid: updatedTaskID, taskcomplete: updatedTaskStatus } = req.body;
-    db.collection('todo').updateOne({ taskid: parseInt(updatedTaskID) }, 
-    { $set: { taskcomplete: updatedTaskStatus === 'true'}}, (err, _) => {
+    let { _id: updatedTaskID, status } = req.body;
+    Task.updateOne({ '_id': updatedTaskID }, { $set: { 'status': status } }, (err) => {
         if(err) {
-            res.send("Error when updating task!");
+            console.log({err});
         } else {
             res.redirect('/listTasks');
         }
-    });
-});
-
-app.get('/findtasks/:no1/:no2', urlencodedParser, (req, res) => {
-    let { no1, no2 } = req.params; 
-    let query = { taskid: { $gte: parseInt(no1), $lte: parseInt(no2) }};
-    db.collection('todo').find(query).toArray((_, data) => {
-        res.render('listTasks.html', { tasks: data });
     });
 });
 

@@ -19,6 +19,11 @@ input {
     margin-bottom: 20px; 
 }
 
+select { 
+    display: table-cell;
+    margin-bottom: 20px; 
+}
+
 .form-container {
     flex-direction: column;
     margin-top: 30px;

@@ -9,8 +9,10 @@
 </head>
 <body>
     <a href="/">Home</a>
+    <a href="/newDev">Register a new developer</a>
+    <a href="/listDevs">List all developers</a>
     <a href="/listTasks">List all tasks</a>
-    <a href="/updateTask">Update task</a>
+    <a href="/updateTask">Update a task</a>
     <a href="/deleteTasks">Delete tasks</a>
     <div class="form-container">
         <form action="/newTask" method="POST">
@@ -21,8 +23,9 @@
             <p>
                 <label for="developer">Assigned to: </label>
                 <select id="developer" name="developerId">
+                    <option value="none">-</option>
                     <% for ( let i = 0; i < devs.length; i++) { %>
-                        <option value="<%= devs[i]._id %>"><%= devs[i].firstName + ' ' + devs[i].lastName %></option>
+                        <option value="<%= devs[i]._id %>"><%= devs[i].name.firstName + ' ' + devs[i].name.lastName %></option>
                     <% }%>
                 </select>
             <p>

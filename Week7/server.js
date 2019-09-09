@@ -108,7 +108,7 @@ app.post('/deleteTasks', urlencodedParser, (req, res) => {
         case 'byid':
             let { _id: deletedTaskID } = req.body;
             // delete a certain taskid
-            Task.deleteOne({ 'taskid': deletedTaskID }, (err) => {
+            Task.deleteOne({ '_id': deletedTaskID }, (err) => {
                 if(err) {
                     console.log({err});
                 } else {

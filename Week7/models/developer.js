@@ -12,7 +12,13 @@ let developerSchema = mongoose.Schema({
     level: {
         type: String,
         required: true,
-        uppercase: true
+        uppercase: true,
+        validator: {
+            validate: function (level) {
+                return level.toUpperCase() === 'BEGINNER' || level.toUpperCase() === 'EXPERT'
+            },
+            message: 'Invalid level provided! Check schema for reference'
+        }
     },
     address: {
         state: String,

@@ -89,7 +89,7 @@ app.post('/newTask', urlencodedParser, (req, res) => {
 });
 
 app.get('/listTasks', urlencodedParser, (_, res) => {
-    Task.find({}, (err, docs) => {
+    Task.find().populate('developerId').exec((err, docs) => {
         if(err) {
             console.log({err});
         } else {
@@ -107,6 +107,10 @@ app.post('/deleteTasks', urlencodedParser, (req, res) => {
     switch(deletetype) {
         case 'byid':
             let { _id: deletedTaskID } = req.body;
+            if (deletedTaskID.trim() === "") {
+                res.redirect('/listTasks');
+                return;
+            } 
             // delete a certain taskid
             Task.deleteOne({ '_id': deletedTaskID }, (err) => {
                 if(err) {
@@ -138,11 +142,33 @@ app.get('/updateTask', urlencodedParser, (_, res) =>{
 
 app.post('/updateTask', urlencodedParser, (req, res) => {
     let { _id: updatedTaskID, status } = req.body;
-    Task.updateOne({ '_id': updatedTaskID }, { $set: { 'status': status } }, (err) => {
+    if (updatedTaskID.trim() === "") {
+        res.redirect('/listTasks');
+        return;
+    }    
+    Task.updateOne({ '_id': updatedTaskID.trim() }, { $set: { 'status': status } }, { upsert: true }, (err) => {
         if(err) {
             console.log({err});
         } else {
             res.redirect('/listTasks');
+        }
+    });
+});
+
+app.get('/nonSamLee', (_, res) => {
+    // 5d76eac2c7ba4d291c6368a6 - Anna's developer ID
+    Developer.find({ $or: [ { 'name.firstName': 'Sam' } , { 'name.firstName': 'Lee' } ]}, (err, docs) => {
+        if(err) {
+            console.log({err});
+        } else {
+            let developerIds = docs.map(x => x._id);
+            Task.updateMany({ 'developerId': { $in: developerIds } }, { $set: { 'developerId': '5d76eaa4c7ba4d291c6368a5', 'status': 'In Progress' }}, (err) => {
+                if (err) {
+                    console.log({err});
+                } else {
+                    res.redirect('/listTasks');
+                }
+            });
         }
     });
 });

@@ -18,7 +18,7 @@
         <div class="grid-item">
             <form action="/deleteTasks" method="POST">
                 <label for="taskId">Task ID</label>
-                <input id="taskId" type="text" name="_id">
+                <input id="taskId" type="text" name="_id" required>
                 <input type="submit" value="Delete">
                 <input type="hidden" name="deletetype" value="byid">
             </form>

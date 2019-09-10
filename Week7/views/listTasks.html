@@ -33,7 +33,7 @@
                     <%= tasks[i].name %>
                 </td>
                 <td>
-                    <%= tasks[i].developerId %>
+                    <%= tasks[i].developerId.name.firstName + ' ' + tasks[i].developerId.name.lastName %>
                 </td>
                 <td>
                     <%= tasks[i].dueDate %>

@@ -42,4 +42,6 @@ app.put('/movies/:movieId/:actorId', movies.removeActor);
 app.post('/movies/:id/actors', movies.addActor);
 //Get all movies within a certain range of year
 app.get('/movies/:year1/:year2', movies.getRange);
+// Question 3
+app.post('/movies/increment', movies.incrementYear);
 app.listen(8080);

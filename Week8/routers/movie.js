@@ -84,5 +84,11 @@ module.exports = {
             if(err) return res.status(400).json(err);
             res.json();
         });
+    },
+    incrementYear: (_, res) => {
+        Movie.updateMany({ year: { $gt: 1995 }}, { $inc: { year: 7 }}).exec((err) => {
+            if(err) return res.status(400).json(err);
+            res.json();
+        });
     }
 };

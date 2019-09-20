@@ -1,0 +1,73 @@
+label, input {
+    display: block;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input, select {
+    width: 100%;
+    resize: none;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    width: 20%;
+    align-content: center;
+}
+
+#inputForm {
+    margin-bottom: 50px;
+}
+
+#saveBook {
+    background-color: green;
+    margin-right: 20px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#deleteHardCovers {
+    background-color: red;
+    margin-right: 20px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#deleteBook {
+    background-color: red;
+    margin-right: 20px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+button:hover {
+    cursor: pointer;
+}

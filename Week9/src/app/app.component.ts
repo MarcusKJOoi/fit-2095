@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 interface Book {
   bookTitle: string,
@@ -21,8 +21,6 @@ export class AppComponent {
   bookType: string = 'Hard Cover';
   bookSum: string = '';
 
-  ngOnInit() {} 
-
   saveBook() {
     this.books.push({
       bookTitle: this.bookTitle,
@@ -33,14 +31,21 @@ export class AppComponent {
     if (this.bookType === 'Hard Cover') {
       this.numOfHardCovers += 1;
     };
+    this.bookTitle = '';
+    this.pubDate = Date.now();
+    this.bookType = 'Hard Cover';
+    this.bookSum = '';
   }
 
   deleteBook(bookNo: number): void {
-    this.books.splice(bookNo, 1);
+    const deletedBook = this.books.splice(bookNo, 1)[0];
+    if (deletedBook.bookType === 'Hard Cover') {
+      this.numOfHardCovers -= 1;
+    }
   }
 
   deleteHardCovers():void {
-    this.books = this.books.filter(x => x.bookType !== 'Hard Cover')
+    this.books = this.books.filter(book => book.bookType !== 'Hard Cover');
     this.numOfHardCovers = 0;
   }
 }

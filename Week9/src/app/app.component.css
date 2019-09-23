@@ -28,7 +28,7 @@ table {
 
 th, td {
     width: 20%;
-    align-content: center;
+    text-align: center;
 }
 
 #inputForm {

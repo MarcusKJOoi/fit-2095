@@ -11,7 +11,7 @@
     <form>
       <p>
         <label for="bookTitle">Book Title</label>
-        <input [(ngModel)]="bookTitle" id="bookTitle" type="text" name="bookTitle">
+        <input [(ngModel)]="bookTitle" id="bookTitle" type="text" name="bookTitle" required>
       </p>
       <p>
         <label for="pubDate">Publication Date</label>
@@ -19,7 +19,7 @@
       </p>
       <p>
         <label>Select Book Type</label>
-        <select [(ngModel)]="bookType" id="bookType" name="bookType" >
+        <select [(ngModel)]="bookType" id="bookType" name="bookType">
           <option value="Hard Cover">Hard Cover</option>
           <option value="Paper Back">Paper Back</option>
         </select>

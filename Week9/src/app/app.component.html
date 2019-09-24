@@ -28,9 +28,14 @@
         <label for="bookSum">Book Summary</label>
         <textarea [(ngModel)]="bookSum" id="bookSum" name="bookSum"></textarea>
       </p>
+      <p>
+        <label for="deleteCount">Delete First n Books</label>
+        <input [(ngModel)]="deleteCount" id="deleteCount" type="number" min="0" name="deleteCount">
+      </p>
     </form>
     <button (click)="saveBook()" id="saveBook">Save Book {{ books.length }}</button>
-    <button (click)="deleteHardCovers()" id="deleteHardCovers">Delete {{ numOfHardCovers }} Hard Cover Books</button>
+    <button (click)="deleteHardCovers()" id="deleteHardCovers">Delete {{ numOfHardCovers }} Hard Cover Book(s)</button>
+    <button (click)="deleteNBooks()" id="deleteNBooks">Delete First {{ deleteCount }} Book(s)</button>
   </div>
   <div>
     <table>

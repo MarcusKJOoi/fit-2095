@@ -20,8 +20,9 @@ export class AppComponent {
   pubDate: number = Date.now();
   bookType: string = 'Hard Cover';
   bookSum: string = '';
+  deleteCount: number = 0;
 
-  saveBook() {
+  saveBook(): void {
     this.books.push({
       bookTitle: this.bookTitle,
       pubDate: this.pubDate,
@@ -42,6 +43,16 @@ export class AppComponent {
     if (deletedBook.bookType === 'Hard Cover') {
       this.numOfHardCovers -= 1;
     }
+  }
+
+  deleteNBooks(): void {
+    const deletedBooks = this.books.splice(0, this.deleteCount);
+    deletedBooks.forEach(book => {
+      if (book.bookType === 'Hard Cover') {
+        this.numOfHardCovers -= 1;
+      }
+    });
+    this.deleteCount = 0;
   }
 
   deleteHardCovers():void {

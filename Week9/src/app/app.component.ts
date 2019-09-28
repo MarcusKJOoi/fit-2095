@@ -21,7 +21,9 @@ export class AppComponent {
   bookType: string = 'Hard Cover';
   bookSum: string = '';
   deleteCount: number = 0;
-
+  section: string = '';
+  sectionNum: number;
+  
   saveBook(): void {
     this.books.push({
       bookTitle: this.bookTitle,

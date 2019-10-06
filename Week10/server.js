@@ -46,4 +46,6 @@ app.post('/movies/:id/actors', movies.addActor);
 app.get('/movies/:year1/:year2', movies.getRange);
 // Question 3
 app.post('/movies/increment', movies.incrementYear);
+//Delete movies before a given year
+app.delete('/movies/year/:year', movies.deletePreceeding);
 app.listen(8080);

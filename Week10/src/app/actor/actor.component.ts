@@ -8,12 +8,14 @@ import { DatabaseService } from "../database.service";
 export class ActorComponent implements OnInit {
   actorsDB: any[] = [];
   moviesDB: any[] = [];
-  section = 1;
+  section: number = 1;
   fullName: string = "";
   bYear: number = 0;
   actorId: string = "";
   title: string = ""; // movie title
   year: number = 0; // movie year
+  selectedActor: string = "";
+  selectedMovie: string = "";
   constructor(private dbService: DatabaseService) {}
   //Get all Actors
   onGetActors() {
@@ -41,9 +43,11 @@ export class ActorComponent implements OnInit {
     this.dbService.updateActor(this.actorId, obj).subscribe(_ => {
       this.onGetActors();
     });
+    this.fullName = '';
+    this.bYear = 0;
   }
   //Delete Actor
-  onDeleteActor(item) {
+  onDeleteActor(item: any) {
     this.dbService.deleteActor(item._id).subscribe(_ => {
       this.onGetActors();
     });
@@ -70,11 +74,34 @@ export class ActorComponent implements OnInit {
   }
   // Add a new movie
   onSaveMovie() {
-    let obj = { title: this.title, year: this.year };
+    const obj = { title: this.title, year: this.year };
     this.dbService.createMovie(obj).subscribe(_ => {
       this.onGetMovies();
     });
     this.title = '';
     this.year = 0;
   } 
+  // Delete a movie
+  onDeleteMovie(item: any) {
+    this.dbService.deleteMovie(item._id).subscribe(_ => {
+      this.onGetMovies();
+    });
+  }
+  // Delete movie(s) before a year
+  onDeletePreceedingMovies() {
+    this.dbService.deletePreceedingMovies(this.year).subscribe(_ => {
+      this.onGetMovies();
+    });
+    this.year = 0;
+  }
+  // Add actor to a movie
+  onAddActorMovie() {
+    // Actor ID sent via POST request (body)
+    const data = { id: this.selectedActor }
+    // Movie ID sent via URL params (params)
+    this.dbService.addActorToMovie(this.selectedMovie, data).subscribe(_ => {
+      this.selectedActor = ""
+      this.selectedMovie = "";
+    });
+  }
 }

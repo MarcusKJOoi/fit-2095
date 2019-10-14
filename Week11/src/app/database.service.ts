@@ -45,4 +45,8 @@ export class DatabaseService {
     let url = "/movies/" + id + "/actors";
     return this.http.post(url, data, httpOptions);
   }
+  getActorsAfterYear(year) {
+    let url = "/actors/year/" + year;
+    return this.http.get(url);
+  }
 }

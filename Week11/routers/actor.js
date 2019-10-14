@@ -85,5 +85,18 @@ module.exports = {
             if(err) return res.status(400).json(err);
             res.json();
         });
-    }
+    },
+    getBornAfter: (req, res) => {
+        Actor
+        .find({ bYear: { $gt: req.params.year }})
+        .sort({ bYear: 'asc' })
+        .populate('movies')
+        .exec((err, actors) => {
+            if (err) {
+                return res.status(404).json(err);
+            } else {
+                res.json(actors);
+            }
+        });
+    },
 };

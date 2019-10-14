@@ -9,6 +9,7 @@ import { ListmoviesComponent } from './listmovies/listmovies.component';
 import { AddmovieComponent } from './addmovie/addmovie.component';
 import { DeletemovieComponent } from './deletemovie/deletemovie.component';
 import { AddactormovieComponent } from './addactormovie/addactormovie.component';
+import { Listactors1980Component } from './listactors1980/listactors1980.component';
 
 const routes: Routes = [
   { path: "listactors", component: ListactorsComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "addmovie", component: AddmovieComponent },
   { path: "deletemovie", component: DeletemovieComponent },
   { path: "addactormovie", component: AddactormovieComponent },
+  { path: "listactors1980", component: Listactors1980Component },
   { path: "", redirectTo: "/listactors", pathMatch: "full" },
   { path: "**", component: ViewnotfoundComponent },
 ];

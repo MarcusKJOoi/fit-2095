@@ -14,6 +14,7 @@ import { ListmoviesComponent } from './listmovies/listmovies.component';
 import { AddactormovieComponent } from './addactormovie/addactormovie.component';
 import { ViewnotfoundComponent } from './viewnotfound/viewnotfound.component';
 import { AppRoutingModule } from './app-routing.module';
+import { Listactors1980Component } from './listactors1980/listactors1980.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
     ListmoviesComponent,
     AddactormovieComponent,
     ViewnotfoundComponent,
+    Listactors1980Component,
   ],
   imports: [
     AppRoutingModule,

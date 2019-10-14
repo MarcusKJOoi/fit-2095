@@ -48,4 +48,6 @@ app.get('/movies/:year1/:year2', movies.getRange);
 app.post('/movies/increment', movies.incrementYear);
 //Delete movies before a given year
 app.delete('/movies/year/:year', movies.deletePreceeding);
+// Get all actors born after the yera 1980
+app.get('/actors/year/:year', actors.getBornAfter);
 app.listen(8080);

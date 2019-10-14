@@ -9,6 +9,11 @@ import { AddactorComponent } from "./addactor/addactor.component";
 import { DeleteactorComponent } from "./deleteactor/deleteactor.component";
 import { UpdateactorComponent } from "./updateactor/updateactor.component";
 import { RouterModule, Routes } from "@angular/router";
+import { AddmovieComponent } from './addmovie/addmovie.component';
+import { DeletemovieComponent } from './deletemovie/deletemovie.component';
+import { ListmoviesComponent } from './listmovies/listmovies.component';
+import { AddactormovieComponent } from './addactormovie/addactormovie.component';
+import { ViewnotfoundComponent } from './viewnotfound/viewnotfound.component';
 const appRoutes: Routes = [
   { path: "listactors", component: ListactorsComponent },
   { path: "addactor", component: AddactorComponent },
@@ -23,6 +28,11 @@ const appRoutes: Routes = [
     AddactorComponent,
     UpdateactorComponent,
     DeleteactorComponent,
+    AddmovieComponent,
+    DeletemovieComponent,
+    ListmoviesComponent,
+    AddactormovieComponent,
+    ViewnotfoundComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

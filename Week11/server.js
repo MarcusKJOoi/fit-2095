@@ -9,7 +9,7 @@ const app = express();
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/", express.static(path.join(__dirname, "dist/Week10")));
+app.use("/", express.static(path.join(__dirname, "dist/Week11")));
 mongoose.connect('mongodb://localhost:27017/FIT2095', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (err) => {
     if (err) {
         return console.log('Mongoose - connection error:', err);

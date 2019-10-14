@@ -15,7 +15,7 @@ export class AddactorComponent {
   constructor(private dbService: DatabaseService, private router: Router) {}
   onSaveActor() {
     let obj = { name: this.fullName, bYear: this.bYear };
-    this.dbService.createActor(obj).subscribe(result => {
+    this.dbService.createActor(obj).subscribe(_ => {
       this.router.navigate(["/listactors"]);
     });
   }

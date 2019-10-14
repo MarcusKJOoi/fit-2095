@@ -56,7 +56,6 @@ module.exports = {
     getRange: (req, res) => {
         const year1 = parseInt(req.params.year1);
         const year2 = parseInt(req.params.year2);
-        console.log('yr1', year1, 'yr2', year2);
         if (year1 > year2) {
             Movie.find({ year: { $gte: year2, $lte: year1 } })
             .populate('actors')

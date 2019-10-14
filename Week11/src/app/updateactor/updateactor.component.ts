@@ -16,7 +16,6 @@ export class UpdateactorComponent implements OnInit {
   constructor(private dbService: DatabaseService, private router: Router) {}
   //Get all Actors
   onGetActors() {
-    console.log("From on GetActors");
     return this.dbService.getActors().subscribe((data: any[]) => {
       this.actorsDB = data;
     });

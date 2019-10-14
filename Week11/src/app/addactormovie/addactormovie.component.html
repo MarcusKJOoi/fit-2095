@@ -1,1 +1,13 @@
-<p>addactormovie works!</p>
+<div class="section">
+    <div class="form-group">
+      <label for="actorName">Actor</label>
+      <select id="actorName" [(ngModel)]="selectedActor" class="form-control">
+        <option [value]="actor._id" *ngFor="let actor of actorsDB">{{actor.name}}</option>
+      </select>
+      <label for="movieTitle">Movie</label>
+      <select id="movieTitle" [(ngModel)]="selectedMovie" class="form-control">
+        <option [value]="movie._id" *ngFor="let movie of moviesDB">{{movie.title}}</option>
+      </select>
+      <button type="submit" class="btn btn-primary" (click)="onAddActorMovie()">Add Actor to Movie</button>
+    </div>
+</div>

@@ -11,7 +11,6 @@ export class ListactorsComponent implements OnInit {
   private actorsDB: any[] = [];
   constructor(private dbService: DatabaseService) {}
   ngOnInit() {
-    console.log("Hi From ListActors ngIOnit");
     this.dbService.getActors().subscribe((data: any[]) => {
       this.actorsDB = data;
     });

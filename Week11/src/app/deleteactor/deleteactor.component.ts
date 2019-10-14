@@ -13,14 +13,13 @@ export class DeleteactorComponent implements OnInit {
   constructor(private dbService: DatabaseService, private router: Router) {}
   //Get all Actors
   onGetActors() {
-    console.log("From on GetActors");
     return this.dbService.getActors().subscribe((data: any[]) => {
       this.actorsDB = data;
     });
   }
   //Delete Actor
   onDeleteActor(item) {
-    this.dbService.deleteActor(item._id).subscribe(result => {
+    this.dbService.deleteActor(item._id).subscribe(_ => {
       this.onGetActors();
       this.router.navigate(["/listactors"]);
     });

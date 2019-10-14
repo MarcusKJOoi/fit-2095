@@ -8,19 +8,12 @@ import { ListactorsComponent } from "./listactors/listactors.component";
 import { AddactorComponent } from "./addactor/addactor.component";
 import { DeleteactorComponent } from "./deleteactor/deleteactor.component";
 import { UpdateactorComponent } from "./updateactor/updateactor.component";
-import { RouterModule, Routes } from "@angular/router";
 import { AddmovieComponent } from './addmovie/addmovie.component';
 import { DeletemovieComponent } from './deletemovie/deletemovie.component';
 import { ListmoviesComponent } from './listmovies/listmovies.component';
 import { AddactormovieComponent } from './addactormovie/addactormovie.component';
 import { ViewnotfoundComponent } from './viewnotfound/viewnotfound.component';
-const appRoutes: Routes = [
-  { path: "listactors", component: ListactorsComponent },
-  { path: "addactor", component: AddactorComponent },
-  { path: "updateactor", component: UpdateactorComponent },
-  { path: "deleteactor", component: DeleteactorComponent },
-  { path: "", redirectTo: "/listactors", pathMatch: "full" },
-];
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +28,7 @@ const appRoutes: Routes = [
     ViewnotfoundComponent,
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

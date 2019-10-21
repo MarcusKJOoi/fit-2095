@@ -9,6 +9,13 @@
       <button (click)="sendMessage()">Send</button>
       <button (click)="textToAudio()">Text to Audio</button>
     </p>
+    <p>
+      To upper case: <input [(ngModel)]="toUpperMessage" />
+      <button (click)="sendToUpper()">Send Upper Case</button>
+    </p>
+    <p>
+      Message in upper case: {{ resultingUpper }}
+    </p>
     <p *ngIf="userName !== ''">
       Your name is {{ userName }}
     </p>

@@ -10,6 +10,8 @@ export class AppComponent {
   userName: string = "";
   userNameInput: string;
   messageText: string;
+  toUpperMessage: string;
+  resultingUpper: string;
   messages: Array<any> = [];
   socket: SocketIOClient.Socket;
   showAudioPlayer: boolean = false;
@@ -29,6 +31,9 @@ export class AppComponent {
       this.fileName = data.fileName;
       this.showAudioPlayer = true;
     });
+    this.socket.on("itsUpper", data => {
+      this.resultingUpper = data.msg;
+    })
   }
   sendMessage() {
     this.socket.emit("newMsg", {
@@ -44,5 +49,12 @@ export class AppComponent {
   textToAudio() {
     this.socket.emit("transcribeAudio", { msg: this.messageText })
     this.messageText = "";
+  }
+  // Task 1
+  sendToUpper() {
+    this.socket.emit("toUpper", {
+      msg: this.toUpperMessage,
+    });
+    this.toUpperMessage = "";
   }
 }

@@ -40,6 +40,12 @@ io.on("connection", socket => {
       });
     });
   });
+  socket.on("toUpper", data => {
+    const { msg } = data;
+    socket.emit("itsUpper", { 
+      msg: msg.toUpperCase(),
+    });
+  })
 });
 
 server.listen(port, () => {

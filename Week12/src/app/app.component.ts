@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import * as io from "socket.io-client";
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -11,6 +12,8 @@ export class AppComponent {
   messageText: string;
   messages: Array<any> = [];
   socket: SocketIOClient.Socket;
+  showAudioPlayer: boolean = false;
+  fileName: string;
   constructor() {
     this.socket = io.connect();
   }
@@ -22,7 +25,10 @@ export class AppComponent {
     this.socket.on("msg", data => {
       this.messages.push(data);
     });
-    console.log(this.messages);
+    this.socket.on("transcribeAudio", data => {
+      this.fileName = data.fileName;
+      this.showAudioPlayer = true;
+    });
   }
   sendMessage() {
     this.socket.emit("newMsg", {
@@ -34,5 +40,9 @@ export class AppComponent {
   setUserName() {
     this.userName = this.userNameInput;
     this.userNameInput = "";
+  }
+  textToAudio() {
+    this.socket.emit("transcribeAudio", { msg: this.messageText })
+    this.messageText = "";
   }
 }

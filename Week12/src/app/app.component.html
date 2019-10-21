@@ -7,17 +7,22 @@
     <p>
       Your message: <input [(ngModel)]="messageText" />
       <button (click)="sendMessage()">Send</button>
+      <button (click)="textToAudio()">Text to Audio</button>
     </p>
     <p *ngIf="userName !== ''">
       Your name is {{ userName }}
     </p>
     <div class="container" *ngFor="let item of messages.slice().reverse() ">
-      <p class="from">{{item.msg.from}}</p>
-      <p>{{item.msg.msg}}</p>
+      <p class="from">{{item.data.from}}</p>
+      <p>{{item.data.msg}}</p>
       <span class="time-right">{{item.timeStamp}}</span>
     </div>
   </div>
 </div>
 <div class="jumbotron text-center">
   <p>FIT2095 Chat Application</p>
+  <audio controls *ngIf="showAudioPlayer">
+      <source [src]="fileName" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio> 
 </div>
